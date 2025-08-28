@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spacefy - Agência de Marketing Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1800ad;
+            --primary-shadow: rgba(24, 0, 173, 0.3);
+            --blue-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+            --blue-glow: rgba(59, 130, 246, 0.4);
+            --orange-gradient: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa726 100%);
+            --orange-glow: rgba(255, 107, 53, 0.4);
+            --red-glow: rgba(239, 68, 68, 0.4);
+            --green-glow: rgba(16, 185, 129, 0.4);
+            --dark-bg: #0a0a0f;
+            --dark-secondary: #12121a;
+            --dark-tertiary: #1a1a25;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.85);
+            --text-muted: rgba(255, 255, 255, 0.65);
+            --accent-green: #10b981;
+            --section-spacing: 0px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--dark-bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Dark background with subtle patterns */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--primary-shadow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Premium Glass Container */
+        .glass-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 20px var(--primary-shadow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .glass-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.5),
+                0 0 30px var(--primary-shadow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Logo Header */
+        .logo-header {
+            background: var(--dark-bg);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo-header img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        /* Smooth Section Transitions */
+        .section {
+            padding: 80px 0;
+            margin: var(--section-spacing) 0;
+            position: relative;
+            transition: background 0.8s ease-in-out;
+        }
+
+        .section:nth-child(1) {
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-secondary) 100%);
+        }
+
+        .section:nth-child(2) {
+            background: linear-gradient(180deg, var(--dark-secondary) 0%, var(--dark-tertiary) 100%);
+        }
+
+        .section:nth-child(3) {
+            background: linear-gradient(180deg, var(--dark-tertiary) 0%, var(--dark-secondary) 100%);
+        }
+
+        .section:nth-child(4) {
+            background: linear-gradient(180deg, var(--dark-secondary) 0%, var(--dark-bg) 100%);
+        }
+
+        .section:nth-child(5) {
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-tertiary) 100%);
+        }
+
+        .section:nth-child(6) {
+            background: linear-gradient(180deg, var(--dark-tertiary) 0%, var(--dark-secondary) 100%);
+        }
+
+        .section:nth-child(7) {
+            background: linear-gradient(180deg, var(--dark-secondary) 0%, var(--dark-bg) 100%);
+        }
+
+        /* Header with highlighted text */
+        .header {
+            padding: 100px 0 80px 0;
+            text-align: center;
+            background: var(--dark-bg);
+        }
+
+        .header h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 900;
+            margin-bottom: 32px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .highlight-text {
+            background: var(--blue-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px var(--blue-glow);
+            position: relative;
+        }
+
+        .header p {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.01em;
+        }
+
+        /* Orange Gradient Buttons */
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--orange-gradient);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 25px var(--orange-glow),
+                0 0 20px rgba(255, 107, 53, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 12px 35px var(--orange-glow),
+                0 0 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-primary {
+            font-size: 1.4rem;
+            padding: 22px 50px;
+            box-shadow: 
+                0 12px 30px var(--orange-glow),
+                0 0 25px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Target Audience with Icons */
+        .target-audience {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .target-item {
+            padding: 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .target-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--orange-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px var(--orange-glow);
+        }
+
+        .target-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .target-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        /* Process Steps */
+        .process-container {
+            background: var(--glass-bg);
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin: 60px 0;
+            border: 1px solid var(--glass-border);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin: 60px 0;
+        }
+
+        .process-step {
+            padding: 32px;
+            text-align: center;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 64px;
+            height: 64px;
+            background: var(--orange-gradient);
+            border-radius: 50%;
+            line-height: 64px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px var(--orange-glow);
+        }
+
+        /* Separated Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            padding: 32px;
+            position: relative;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        .service-icon.kommo {
+            background: var(--blue-gradient);
+            box-shadow: 0 6px 20px var(--blue-glow);
+        }
+
+        .service-icon.google {
+            background: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #ea4335 100%);
+            box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+        }
+
+        .service-icon.meta {
+            background: linear-gradient(135deg, #1877f2 0%, #42a5f5 50%, #e91e63 100%);
+            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
+        }
+
+        .service-icon.linkedin {
+            background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
+            box-shadow: 0 6px 20px rgba(0, 119, 181, 0.4);
+        }
+
+        .service-icon.tiktok {
+            background: linear-gradient(135deg, #000000 0%, #ff0050 50%, #00f2ea 100%);
+            box-shadow: 0 6px 20px rgba(255, 0, 80, 0.4);
+        }
+
+        .service-icon.tech {
+            background: var(--accent-green);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .service-icon.consulting {
+            background: var(--orange-gradient);
+            box-shadow: 0 6px 20px var(--orange-glow);
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .service-list {
+            list-style: none;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        .service-list li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 24px;
+            font-weight: 400;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .service-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-green);
+            border-radius: 50%;
+        }
+
+        .service-list li::after {
+            content: '✓';
+            position: absolute;
+            left: 3px;
+            top: 11px;
+            color: white;
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        /* Enhanced Spacefy X Plan with Path */
+        .spacefy-x-container {
+            background: var(--glass-bg);
+            border-radius: 32px;
+            padding: 60px 40px;
+            margin: 80px 0;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .spacefy-x-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .spacefy-x-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .crown-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--orange-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 8px 25px var(--orange-glow);
+        }
+
+        .phases-path {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .path-line {
+            position: absolute;
+            left: 50%;
+            top: 120px;
+            bottom: 120px;
+            width: 4px;
+            background: linear-gradient(180deg, var(--orange-gradient));
+            transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: 0 0 20px var(--orange-glow);
+            z-index: 1;
+        }
+
+        .phase-item {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .phase-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .phase-marker {
+            width: 100px;
+            height: 100px;
+            background: var(--orange-gradient);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            box-shadow: 0 12px 30px var(--orange-glow);
+            flex-shrink: 0;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .phase-number {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .phase-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .phase-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .phase-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .phase-duration {
+            font-size: 1rem;
+            color: var(--orange-glow);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: rgba(255, 107, 53, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .phase-list {
+            list-style: none;
+        }
+
+        .phase-list li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .phase-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--orange-glow);
+            font-weight: bold;
+        }
+
+        /* Premium Chart Styles with Enhanced Glow */
+        .results-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-tertiary) 100%);
+        }
+
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 60px;
+            margin: 60px 0;
+        }
+
+        .chart-card {
+            background: var(--glass-bg);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            position: relative;
+        }
+
+        .chart-card.pessimistic {
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 30px var(--red-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-card.optimistic {
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 30px var(--green-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-card.pessimistic:hover {
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.5),
+                0 0 40px var(--red-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .chart-card.optimistic:hover {
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.5),
+                0 0 40px var(--green-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .chart-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .chart-title.pessimistic {
+            color: #ef4444;
+        }
+
+        .chart-title.optimistic {
+            color: var(--accent-green);
+        }
+
+        .chart-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .metric-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .metric-value.negative {
+            color: #ef4444;
+        }
+
+        .metric-value.positive {
+            color: var(--accent-green);
+        }
+
+        .chart-visual {
+            width: 100%;
+            height: 200px;
+            margin: 30px 0;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-radius: 12px 12px 0 0;
+            transition: all 2s ease-out;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+        .chart-bar.pessimistic {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            height: 30%;
+        }
+
+        .chart-bar.optimistic {
+            background: linear-gradient(180deg, var(--accent-green) 0%, #059669 100%);
+            height: 90%;
+        }
+
+        .chart-value {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Certifications with cleaner design */
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 60px 0;
+        }
+
+        .cert-card {
+            padding: 32px;
+            text-align: center;
+            border-left: 4px solid var(--blue-gradient);
+        }
+
+        .cert-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--blue-gradient);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 8px 25px var(--blue-glow);
+        }
+
+        .cert-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .cert-list {
+            list-style: none;
+        }
+
+        .cert-list li {
+            padding: 6px 0;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Final CTA without container */
+        .final-cta {
+            text-align: center;
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--dark-secondary) 0%, var(--dark-bg) 100%);
+            position: relative;
+        }
+
+        .cta-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 60px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .cta-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .benefit-icon.analysis {
+            background: var(--blue-gradient);
+            box-shadow: 0 8px 25px var(--blue-glow);
+        }
+
+        .benefit-icon.growth {
+            background: var(--accent-green);
+            box-shadow: 0 8px 25px var(--green-glow);
+        }
+
+        .benefit-icon.strategy {
+            background: var(--orange-gradient);
+            box-shadow: 0 8px 25px var(--orange-glow);
+        }
+
+        .benefit-icon.plan {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .benefit-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .benefit-text h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .benefit-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Compact Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            background: var(--dark-bg);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 400;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .target-audience,
+            .services-grid,
+            .certifications,
+            .cta-benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chart-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-item {
+                flex-direction: column !important;
+                text-align: center;
+            }
+
+            .path-line {
+                display: none;
+            }
+
+            .btn {
+                padding: 16px 32px;
+                font-size: 1rem;
+            }
+
+            .btn-primary {
+                padding: 18px 36px;
+                font-size: 1.2rem;
+            }
+
+            .logo-header img {
+                max-width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .target-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .service-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes chartGrow {
+            from {
+                height: 0;
+            }
+            to {
+                height: var(--target-height);
+            }
+        }
+
+        .animate-chart {
+            animation: chartGrow 2s ease-out forwards;
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo Header -->
+    <header class="logo-header">
+        <div class="container">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMjAwIDYwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPHN0eWxlPgouY2xzLTEgeyBmaWxsOiAjZmZmZmZmOyB9Ci5jbHMtMiB7IGZpbGw6ICMzYjgyZjY7IH0KPC9zdHlsZT4KPC9kZWZzPgo8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMCAxMGgxNXYxNWgtMTV6bTIwIDBoMTV2MTVoLTE1em0yMCAwaDEwdjE1aC0xMHoiLz4KPHRleHQgeD0iNzAiIHk9IjM1IiBjbGFzcz0iY2xzLTEiIGZvbnQtZmFtaWx5PSJQb3BwaW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iODAwIj5zcGFjZWZ5PC90ZXh0Pgo8L3N2Zz4=" alt="Spacefy Logo" />
+        </div>
+    </header>
+
+    <!-- Header Section -->
+    <section class="header">
+        <div class="container">
+            <h1>Investindo em <span class="highlight-text">tráfego pago</span> mas não vendo o retorno?</h1>
+            <p>Chega de campanhas que só gastam e não vendem. É hora de fazer marketing que realmente funciona.</p>
+            <a href="#contato" class="btn btn-primary">AGENDAR CONSULTORIA GRATUITA</a>
+            <p style="margin-top: 20px; font-size: 1rem; opacity: 0.8; font-weight: 400;">Análise estratégica do seu negócio sem compromisso</p>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Descubra se já é o seu momento de receber uma Consultoria da Spacefy</h2>
+            <div class="target-audience">
+                <div class="target-item glass-container">
+                    <div class="target-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>Faturam mais de R$ 50.000/mês</h3>
+                        <p>e querem crescer de forma escalável</p>
+                    </div>
+                </div>
+                <div class="target-item glass-container">
+                    <div class="target-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>Já tentaram tráfego pago</h3>
+                        <p>mas não conseguiram resultados consistentes</p>
+                    </div>
+                </div>
+                <div class="target-item glass-container">
+                    <div class="target-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>Têm um produto/serviço validado</h3>
+                        <p>e querem mais clientes qualificados</p>
+                    </div>
+                </div>
+                <div class="target-item glass-container">
+                    <div class="target-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>Querem organizar o processo comercial</h3>
+                        <p>com CRM e automações</p>
+                    </div>
+                </div>
+                <div class="target-item glass-container">
+                    <div class="target-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>Buscam uma parceria estratégica</h3>
+                        <p>para crescimento sustentável</p>
+                    </div>
+                </div>
+                <div class="target-item glass-container">
+                    <div class="target-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>Estão dispostas a investir</h3>
+                        <p>pelo menos R$ 2.000/mês em mídia paga</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="process-container glass-container">
+                <h3 style="font-size: 2rem; margin-bottom: 16px; color: #ffffff; text-align: center; font-weight: 800;">Gabaritou? Então confira abaixo o que você deve fazer agora.</h3>
+                
+                <h4 style="font-size: 1.3rem; margin-bottom: 40px; color: #c7d2fe; text-align: center; font-weight: 600;">Como funciona nosso processo:</h4>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div style="font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: #ffffff;">Clique no botão</div>
+                        <div style="color: var(--text-secondary); font-size: 0.95rem;">e acesse nosso formulário de consultoria</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div style="font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: #ffffff;">Preencha suas informações</div>
+                        <div style="color: var(--text-secondary); font-size: 0.95rem;">em apenas 3-5 minutos com dados do seu negócio</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div style="font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: #ffffff;">Nossa equipe entra em contato</div>
+                        <div style="color: var(--text-secondary); font-size: 0.95rem;">em até 24h para agendar sua consultoria</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div style="font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: #ffffff;">Receba sua análise completa</div>
+                        <div style="color: var(--text-secondary); font-size: 0.95rem;">e plano de ação personalizado</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="#contato" class="btn">QUERO DESCOBRIR COMO ESCALAR MEU NEGÓCIO</a>
+                <p style="margin-top: 20px; font-size: 1rem; opacity: 0.8; font-weight: 400;">Consultoria gratuita de 60 minutos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="services-grid">
+                <!-- CRM Implementation -->
+                <div class="service-card glass-container">
+                    <div class="service-header">
+                        <div class="service-icon kommo">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Implementação Completa de CRM</h3>
+                            <p style="color: var(--text-muted); margin: 4px 0 0 0; font-size: 0.9rem; font-style: italic;">Powered by Kommo</p>
+                        </div>
+                    </div>
+                    <ul class="service-list">
+                        <li>Configuração profissional do sistema</li>
+                        <li>Automações de vendas personalizadas</li>
+                        <li>Funil comercial estruturado</li>
+                        <li>Entrega da rotina completa da equipe</li>
+                    </ul>
+                </div>
+
+                <!-- Google Ads -->
+                <div class="service-card glass-container">
+                    <div class="service-header">
+                        <div class="service-icon google">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Google Ads - Domine a Intenção de Compra</h3>
+                        </div>
+                    </div>
+                    <ul class="service-list">
+                        <li><strong>Campanhas de Busca Estratégicas:</strong> Apareça exatamente quando seus clientes estão procurando por soluções como a sua</li>
+                        <li><strong>Remarketing Inteligente:</strong> Reconquiste visitantes que não converteram com mensagens personalizadas por estágio do funil</li>
+                        <li><strong>Google Shopping Otimizado:</strong> Domine as buscas de produtos com feeds otimizados e campanhas de alta performance</li>
+                        <li><strong>Rede de Display:</strong> Alcance novos públicos em sites relevantes com criativos que realmente convertem</li>
+                        <li><strong>Anúncios no YouTube:</strong> Vídeos que educam, engajam e convertem em todas as fases da jornada do cliente</li>
+                    </ul>
+                </div>
+
+                <!-- Meta Ads -->
+                <div class="service-card glass-container">
+                    <div class="service-header">
+                        <div class="service-icon meta">
+                            <i class="fab fa-meta"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Meta Ads - Conquiste Onde Seus Clientes Estão</h3>
+                        </div>
+                    </div>
+                    <ul class="service-list">
+                        <li><strong>Anúncios no Facebook com Precisão:</strong> Segmentação avançada por comportamento, interesses e dados demográficos</li>
+                        <li><strong>Stories e Reels do Instagram:</strong> Conteúdo nativo que não parece anúncio e gera engajamento real</li>
+                        <li><strong>Públicos Similares:</strong> Encontre clientes similares aos seus melhores compradores</li>
+                        <li><strong>Remarketing Multi-Camadas:</strong> Sequências de anúncios baseadas no comportamento do usuário</li>
+                    </ul>
+                </div>
+
+                <!-- LinkedIn Ads -->
+                <div class="service-card glass-container">
+                    <div class="service-header">
+                        <div class="service-icon linkedin">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">LinkedIn Ads - Precisão B2B Absoluta</h3>
+                        </div>
+                    </div>
+                    <ul class="service-list">
+                        <li><strong>Conteúdo Patrocinado:</strong> Conteúdo relevante que posiciona sua empresa como autoridade no mercado</li>
+                        <li><strong>Campanhas de Mensagem Direta:</strong> Mensagens diretas para decisores com alta taxa de abertura</li>
+                                                <li><strong>Formulários de Geração de Leads:</strong> Formulários nativos que capturam leads qualificados sem sair da plataforma</li>
+                        <li><strong>Promoção de Eventos:</strong> Divulgação de webinars, eventos e lançamentos para públicos segmentados</li>
+                        <li><strong>Marketing Baseado em Contas:</strong> Campanhas direcionadas para empresas específicas do seu target</li>
+                    </ul>
+                </div>
+
+                <!-- TikTok Ads -->
+                <div class="service-card glass-container">
+                    <div class="service-header">
+                        <div class="service-icon tiktok">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">TikTok Ads - Inovação e Alcance Jovem</h3>
+                        </div>
+                    </div>
+                    <ul class="service-list">
+                        <li><strong>Anúncios no Feed:</strong> Vídeos nativos que se integram naturalmente ao feed dos usuários</li>
+                        <li><strong>Anúncios Spark:</strong> Amplifique conteúdos orgânicos que já estão performando bem</li>
+                        <li><strong>Campanhas de Visualização Máxima:</strong> Máxima visibilidade com anúncios na abertura do app</li>
+                        <li><strong>Desafios de Hashtag Patrocinados:</strong> Engajamento massivo através de desafios virais</li>
+                        <li><strong>Anúncios de Compras:</strong> Integração direta com catálogo de produtos para conversão imediata</li>
+                    </ul>
+                </div>
+
+                <!-- Technical Structure -->
+                <div class="service-card glass-container">
+                    <div class="service-header">
+                        <div class="service-icon tech">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Estrutura Técnica Completa</h3>
+                        </div>
+                    </div>
+                    <ul class="service-list">
+                        <li>Google Analytics 4 configurado</li>
+                        <li>Rastreamento avançado de conversões</li>
+                        <li>Google Search Console</li>
+                        <li>Google Merchant Center</li>
+                        <li>Google Meu Negócio Otimizado</li>
+                    </ul>
+                </div>
+
+                <!-- Strategic Consulting -->
+                <div class="service-card glass-container">
+                    <div class="service-header">
+                        <div class="service-icon consulting">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <h3 class="service-title">Consultoria Estratégica Individual</h3>
+                        </div>
+                    </div>
+                    <ul class="service-list">
+                        <li>Análise profunda do negócio</li>
+                        <li>Estratégia personalizada</li>
+                        <li>Reuniões mensais de otimização</li>
+                        <li>Suporte direto via WhatsApp</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="#contato" class="btn">QUERO RECEBER UMA PROPOSTA PERSONALIZADA</a>
+                <p style="margin-top: 20px; font-size: 1rem; opacity: 0.8; font-weight: 400;">Agende sua consultoria estratégica gratuita</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spacefy X Plan Section with Path -->
+    <section class="section">
+        <div class="container">
+            <div class="spacefy-x-container">
+                <div class="spacefy-x-header">
+                    <h2 class="spacefy-x-title">
+                        <span class="crown-icon">
+                            <i class="fas fa-crown"></i>
+                        </span>
+                        Plano Spacefy X | Solução Completa
+                    </h2>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem;">Sua transformação digital em 14 dias</p>
+                </div>
+
+                <div class="phases-path">
+                    <div class="path-line"></div>
+                    
+                    <div class="phase-item">
+                        <div class="phase-marker">
+                            <div class="phase-number">FASE 1</div>
+                        </div>
+                        <div class="phase-content">
+                            <h3 class="phase-title">Diagnóstico e Planejamento Estratégico</h3>
+                            <div class="phase-duration">Dias 1-2</div>
+                            <ul class="phase-list">
+                                <li><strong>Reunião de Quarter Estratégico:</strong> Análise completa do modelo de negócio, concorrência e posicionamento de mercado</li>
+                                <li><strong>Definição de Personas e Perfil do Cliente Ideal:</strong> Mapeamento detalhado do cliente ideal com base em dados comportamentais</li>
+                                <li><strong>Auditoria Técnica Completa:</strong> Avaliação do site, páginas de conversão, formulários e jornada do usuário</li>
+                                <li><strong>Coleta de Acessos e Configurações:</strong> Organização de todas as plataformas e ferramentas necessárias</li>
+                                <li><strong>Definição de Indicadores e Metas:</strong> Estabelecimento de métricas claras e objetivos mensuráveis</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="phase-item">
+                        <div class="phase-marker">
+                            <div class="phase-number">FASE 2</div>
+                        </div>
+                        <div class="phase-content">
+                            <h3 class="phase-title">Configuração das Plataformas de Mídia</h3>
+                            <div class="phase-duration">Dias 3-6</div>
+                            <ul class="phase-list">
+                                <li><strong>Configuração Profissional do Google Ads:</strong> Estruturação de campanhas por intenção de busca, configuração de extensões e otimização de pontuação de qualidade</li>
+                                <li><strong>Configuração do Meta Ads:</strong> Instalação e configuração do Pixel, criação de públicos personalizados e públicos similares</li>
+                                <li><strong>Implementação do LinkedIn Ads:</strong> Configuração para campanhas B2B com segmentação por cargo, empresa e setor</li>
+                                <li><strong>Configuração do TikTok Ads:</strong> Configuração para alcance de audiências mais jovens com foco em vídeos nativos</li>
+                                <li><strong>Configuração de Conversões:</strong> Mapeamento completo de eventos de conversão em todas as plataformas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="phase-item">
+                        <div class="phase-marker">
+                            <div class="phase-number">FASE 3</div>
+                        </div>
+                        <div class="phase-content">
+                            <h3 class="phase-title">Infraestrutura Técnica e Análises</h3>
+                            <div class="phase-duration">Dias 7-10</div>
+                            <ul class="phase-list">
+                                <li><strong>Configuração Avançada do Google Analytics 4:</strong> Configuração de eventos personalizados, funis de conversão e relatórios customizados</li>
+                                <li><strong>Otimização do Google Search Console:</strong> Configuração para monitoramento de performance orgânica e identificação de oportunidades</li>
+                                <li><strong>Configuração do Google Merchant Center:</strong> Configuração completa para e-commerce com feed otimizado e campanhas de Shopping</li>
+                                <li><strong>Melhoria do Google Meu Negócio:</strong> Otimização completa do perfil com posts programados, gestão de avaliações e estratégia local</li>
+                                <li><strong>Implementação de Rastreamento Avançado:</strong> Configuração de parâmetros de rastreamento e integração entre plataformas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="phase-item">
+                        <div class="phase-marker">
+                            <div class="phase-number">FASE 4</div>
+                        </div>
+                        <div class="phase-content">
+                            <h3 class="phase-title">Lançamento e Otimização Inicial</h3>
+                            <div class="phase-duration">Dias 11-14</div>
+                            <ul class="phase-list">
+                                <li><strong>Criação das Primeiras Campanhas:</strong> Desenvolvimento de campanhas iniciais com base na estratégia definida</li>
+                                <li><strong>Configuração de Automações:</strong> Configuração de regras automatizadas para otimização de lances e pausas de anúncios</li>
+                                <li><strong>Implementação de Testes A/B:</strong> Configuração de testes para criativos, públicos e páginas de conversão</li>
+                                <li><strong>Painel de Monitoramento:</strong> Criação de painéis personalizados para acompanhamento em tempo real</li>
+                                <li><strong>Lançamento Oficial e Monitoramento:</strong> Início das campanhas com monitoramento intensivo nas primeiras 72 horas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section with Enhanced Charts -->
+    <section class="results-section">
+        <div class="container">
+            <h2 class="section-title">Projeção de Resultados</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 60px;">
+                R$ 2.000/mês em Tráfego Pago por 90 Dias
+            </p>
+            
+            <div class="chart-container">
+                <div class="chart-card glass-container pessimistic">
+                    <h3 class="chart-title pessimistic">Cenário Pessimista</h3>
+                    <p class="chart-subtitle">Sem Estratégia Profissional</p>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <div class="metric-label">Investimento</div>
+                            <div class="metric-value">R$ 6.000</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">Leads</div>
+                            <div class="metric-value">100-133</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">ROAS</div>
+                            <div class="metric-value negative">0.3x - 0.6x</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-visual">
+                        <div class="chart-bar pessimistic">
+                            <div class="chart-value">PREJUÍZO</div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(239, 68, 68, 0.1); border-radius: 12px; padding: 20px; margin-top: 20px; border-left: 4px solid #ef4444;">
+                        <h4 style="color: #ef4444; margin-bottom: 12px; font-weight: 700;">Principais Problemas:</h4>
+                        <ul style="list-style: none; color: var(--text-secondary); font-size: 0.9rem;">
+                            <li style="padding: 4px 0;">• Taxa de Conversão: 0,8%</li>
+                            <li style="padding: 4px 0;">• Custo por Lead: R$ 45-60</li>
+                            <li style="padding: 4px 0;">• Taxa de Fechamento: 2-3%</li>
+                            <li style="padding: 4px 0;">• Vendas: 2-4 em 90 dias</li>
+                            <li style="padding: 4px 0;">• Faturamento: R$ 1.000-2.000</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="chart-card glass-container optimistic">
+                    <h3 class="chart-title optimistic">Cenário Otimista</h3>
+                    <p class="chart-subtitle">Com Estratégia Spacefy</p>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <div class="metric-label">Investimento</div>
+                            <div class="metric-value">R$ 6.000</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">Leads</div>
+                            <div class="metric-value positive">240-333</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label">ROAS</div>
+                            <div class="metric-value positive">3x - 5x</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-visual">
+                        <div class="chart-bar optimistic">
+                            <div class="chart-value">LUCRO</div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(16, 185, 129, 0.1); border-radius: 12px; padding: 20px; margin-top: 20px; border-left: 4px solid var(--accent-green);">
+                        <h4 style="color: var(--accent-green); margin-bottom: 12px; font-weight: 700;">Resultados Esperados:</h4>
+                        <ul style="list-style: none; color: var(--text-secondary); font-size: 0.9rem;">
+                            <li style="padding: 4px 0;">• Taxa de Conversão: 3,5-4,2%</li>
+                            <li style="padding: 4px 0;">• Custo por Lead: R$ 18-25</li>
+                            <li style="padding: 4px 0;">• Taxa de Fechamento: 5-10%</li>
+                            <li style="padding: 4px 0;">• Vendas: 12-33 em 90 dias</li>
+                            <li style="padding: 4px 0;">• Faturamento: R$ 18.000-30.000</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div style="background: var(--glass-bg); border-radius: 24px; padding: 40px; margin: 60px 0; border: 1px solid var(--glass-border);">
+                <h3 style="text-align: center; font-size: 1.8rem; font-weight: 800; margin-bottom: 32px; color: var(--text-primary);">
+                    Comparação Detalhada de Resultados
+                </h3>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; background: transparent;">
+                        <thead>
+                            <tr style="background: rgba(24, 0, 173, 0.15);">
+                                <th style="padding: 20px; text-align: left; font-weight: 700; color: var(--text-primary); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--glass-border);">Métrica</th>
+                                <th style="padding: 20px; text-align: center; font-weight: 700; color: #ef4444; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--glass-border);">Sem Estratégia</th>
+                                <th style="padding: 20px; text-align: center; font-weight: 700; color: var(--accent-green); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--glass-border);">Com Spacefy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 20px; color: var(--text-primary); font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">Leads em 90 dias</td>
+                                <td style="padding: 20px; text-align: center; color: var(--text-secondary); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">100-133</td>
+                                <td style="padding: 20px; text-align: center; color: var(--accent-green); font-weight: 700; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">240-333</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px; color: var(--text-primary); font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">Vendas realizadas</td>
+                                <td style="padding: 20px; text-align: center; color: var(--text-secondary); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">2-4</td>
+                                <td style="padding: 20px; text-align: center; color: var(--accent-green); font-weight: 700; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">12-33</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px; color: var(--text-primary); font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">Faturamento gerado</td>
+                                <td style="padding: 20px; text-align: center; color: var(--text-secondary); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">R$ 1.000-2.000</td>
+                                <td style="padding: 20px; text-align: center; color: var(--accent-green); font-weight: 700; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">R$ 18.000-30.000</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px; color: var(--text-primary); font-weight: 600;">ROAS final</td>
+                                <td style="padding: 20px; text-align: center; color: #ef4444; font-weight: 700;">0,3x a 0,6x</td>
+                                <td style="padding: 20px; text-align: center; color: var(--accent-green); font-weight: 700;">3x a 5x</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p style="text-align: center; font-style: italic; color: var(--text-muted); margin-top: 24px; font-weight: 400; font-size: 0.9rem;">
+                    *Projeções baseadas em dados reais do mercado brasileiro de tráfego pago e performance média dos nossos clientes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Certificações e Parcerias</h2>
+            
+            <div class="certifications">
+                <div class="cert-card glass-container">
+                    <div class="cert-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="cert-title">Parceiro Oficial Kommo CRM</h3>
+                    <ul class="cert-list">
+                        <li>Uma das poucas agências certificadas no Brasil</li>
+                        <li>Acesso a recursos exclusivos</li>
+                    </ul>
+                </div>
+
+                <div class="cert-card glass-container">
+                    <div class="cert-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3 class="cert-title">Certificações Google</h3>
+                    <ul class="cert-list">
+                        <li>Google Ads Certified</li>
+                        <li>Google Analytics Certified</li>
+                        <li>Google Shopping Specialist</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section without container -->
+    <section class="final-cta" id="contato">
+        <div class="container">
+            <h2 class="cta-title">Pronto para Transformar Seu Negócio?</h2>
+            
+            <p class="cta-subtitle">
+                Agende sua consultoria gratuita e descubra:
+            </p>
+            
+            <div class="cta-benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon analysis">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="benefit-text">
+                        <h3>Análise Completa</h3>
+                        <p>das suas campanhas atuais</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon growth">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="benefit-text">
+                        <h3>Oportunidades de Crescimento</h3>
+                        <p>identificadas para seu negócio</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon strategy">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="benefit-text">
+                        <h3>Estratégia Personalizada</h3>
+                        <p>para seu negócio específico</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon plan">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="benefit-text">
+                        <h3>Plano de Ação Detalhado</h3>
+                        <p>(mesmo que não feche conosco)</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="btn btn-primary" style="margin: 40px 0;">AGENDAR CONSULTORIA GRATUITA</a>
+        </div>
+    </section>
+
+    <!-- Compact Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© Copyright 2025 - Spacefy. Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced scroll animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animated');
+                    
+                    // Animate chart bars when they come into view
+                    if (entry.target.classList.contains('chart-bar')) {
+                        entry.target.classList.add('animate-chart');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Initialize scroll animations
+        document.querySelectorAll('.glass-container, .target-item, .process-step, .service-card, .cert-card, .chart-card, .chart-bar, .phase-item, .benefit-item').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.05}s`;
+            observer.observe(el);
+        });
+
+        // Enhanced button interactions
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px) scale(1.02)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+
+            // Click ripple effect
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.4);
+                    transform: scale(0);
+                    animation: ripple-effect 0.6s ease-out;
+                    pointer-events: none;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Enhanced glass container hover effects
+        document.querySelectorAll('.glass-container').forEach(container => {
+            container.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-6px)';
+                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            container.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Chart animation when visible
+        const chartBars = document.querySelectorAll('.chart-bar');
+        chartBars.forEach(bar => {
+            const chartObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (bar.classList.contains('pessimistic')) {
+                            bar.style.setProperty('--target-height', '30%');
+                        } else if (bar.classList.contains('optimistic')) {
+                            bar.style.setProperty('--target-height', '90%');
+                        }
+                        bar.style.animation = 'chartGrow 2s ease-out forwards';
+                        chartObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            chartObserver.observe(bar);
+        });
+
+        // Phase path animation
+        const phaseItems = document.querySelectorAll('.phase-item');
+        phaseItems.forEach((phase, index) => {
+            const phaseObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateX(0)';
+                        }, index * 300);
+                        phaseObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            phase.style.opacity = '0';
+            phase.style.transform = index % 2 === 0 ? 'translateX(-50px)' : 'translateX(50px)';
+            phase.style.transition = 'all 0.8s ease-out';
+            phaseObserver.observe(phase);
+        });
+
+        // Scroll progress indicator
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--orange-gradient);
+            z-index: 10000;
+            transition: width 0.1s ease;
+            box-shadow: 0 2px 10px var(--orange-glow);
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.width = Math.min(scrollPercent, 100) + '%';
+        });
+
+        // Performance optimization
+        let ticking = false;
+        function updateOnScroll() {
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        });
+
+        // Keyboard navigation enhancement
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    </script>
+
+    <style>
+        /* Additional animations and effects */
+        @keyframes ripple-effect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes chartGrow {
+            from {
+                height: 0;
+            }
+            to {
+                height: var(--target-height);
+            }
+        }
+
+        /* Keyboard navigation styles */
+        .keyboard-navigation .btn:focus,
+        .keyboard-navigation .glass-container:focus {
+            outline: 3px solid var(--orange-glow);
+            outline-offset: 4px;
+        }
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .glass-container:hover,
+            .btn:hover {
+                transform: none !important;
+            }
+        }
+
+        /* Enhanced text selection */
+        ::selection {
+            background: var(--orange-glow);
+            color: #ffffff;
+        }
+
+        ::-moz-selection {
+            background: var(--orange-glow);
+            color: #ffffff;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--orange-gradient);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ff8c42 0%, #ffa726 100%);
+        }
+    </style>
+</body>
+</html>
